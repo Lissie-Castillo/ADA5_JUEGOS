@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Dados y Moneda</title>
+    <style>
+        body {
+            text-align: center;
+            color: antiquewhite; 
+            text-shadow: 2px 2px 5px #daf1f7; 
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #a0087a;
+        }
+        .game-box {
+            width: 100px;
+            height: 100px;
+            font-size: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid black;
+            border-radius: 10px;
+            margin: 20px auto;
+            transition: transform 1s ease-out;
+            background-color: rgb(211, 113, 134); 
+            padding: 20px;
+            box-shadow: 5px 5px 15px rgba(71, 27, 27, 0.3); 
+        }
+        
+        button {
+            background-color: #57082d; 
+            color: rgb(253, 251, 251); 
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #b43159; 
+        }
+
+        button:active {
+            background-color: #6aec65; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de Dados y Moneda</h1>
+    <div class="game-box" id="game-box">🎲</div>
+    <button onclick="dado()">Lanzar dado</button>
+    <button onclick="moneda()">Lanzar moneda</button>
+    <button onclick="salir()">Salir</button>
+
+    <script>
+        function dado() {
+            const gameBox = document.getElementById("game-box");
+            const diceFaces = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
+            
+            // Aplicamos la animación de rotación al dado
+            gameBox.style.transform = "rotate(" + (Math.random() * 720) + "deg)";
+            
+            // Esperamos a que la rotación termine antes de cambiar el contenido
+            setTimeout(() => {
+                gameBox.textContent = diceFaces[Math.floor(Math.random() * 6)];
+                alert("¡Lanzando el dado!"); // Se muestra el mensaje después de la animación
+            }, 1000);
+        }
+
+        function moneda() {
+            const gameBox = document.getElementById("game-box");
+            const outcomes = ["Cara", "Cruz"];
+            
+            gameBox.style.transform = "rotateY(" + (Math.random() * 720) + "deg)";
+            
+            setTimeout(() => {
+                gameBox.textContent = outcomes[Math.floor(Math.random() * 2)];
+                alert("¡Lanzando la moneda!"); // Se muestra el mensaje después de la animación
+            }, 1000);
+        }
+
+        function salir() {
+            alert("¡Gracias por jugar! Hasta luego. 👋");
+            location.reload(); // Recarga la página para reiniciar el juego
+        }
+    </script>
+</body>
+</html>
